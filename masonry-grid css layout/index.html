@@ -1,0 +1,164 @@
+<html>
+	<head>
+		<title>
+			masonary layout using grid css
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			body {
+				margin: 10px;
+				  font-family: 'Open Sans Condensed', sans-serif;
+				  font-size: 1.15em;
+				  text-rendering: optimizeLegibility;
+				  -webkit-font-smoothing: antialiased;
+			  }
+			.main-grid{
+				display: grid;
+				grid-gap: 10px;
+				grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+				grid-auto-rows: 10px;
+			}
+			.photo{
+				width: 100%;
+				height: auto;
+				background-color: black;
+			}
+			.heading{
+				background-color: crimson;
+				text-align: center;
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<div class="main-grid">
+
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">1</h2>
+					</header>
+					<img src="img/erza1.jpg" class="photo" />
+				</div>
+			</div>
+
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">2</h2>
+					</header>
+					<img src="img/mira.jpg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">3</h2>
+					</header>
+					<img src="img/erza3.png" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">4</h2>
+					</header>
+					<img src="img/erza4.jpg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">5</h2>
+					</header>
+					<img src="img/erza2.jpg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">6</h2>
+					</header>
+					<img src="img/erza_juvia.jpg" class="photo" />
+				</div>
+			</div><div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">7</h2>
+					</header>
+					<img src="img/erza5 .jpg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">8</h2>
+					</header>
+					<img src="img/lucy.jpg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">9</h2>
+					</header>
+					<img src="img/mira2.jpg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">10</h2>
+					</header>
+					<img src="img/hinata.png" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">11</h2>
+					</header>
+					<img src="img/tsunade.jpeg" class="photo" />
+				</div>
+			</div>
+			<div class="item">
+				<div class="content">
+					<header>
+						<h2 class="heading">12</h2>
+					</header>
+					<img src="img/juvia.png" class="photo" />
+				</div>
+			</div>
+
+
+			
+			
+			
+
+
+		</div>
+	</body>
+	<script>
+		function resizeGridItem(item){
+			grid = document.getElementsByClassName("main-grid")[0];
+			rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+			rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+			rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+			item.style.gridRowEnd = "span "+rowSpan;
+		  }
+		  
+		  function resizeAllGridItems(){
+			allItems = document.getElementsByClassName("item");
+			for(x=0;x<allItems.length;x++){
+			  resizeGridItem(allItems[x]);
+			}
+		  }
+		  
+		  
+		  window.addEventListener("load",resizeAllGridItems)
+		  window.addEventListener("resize", resizeAllGridItems);
+	</script>
+</html>
