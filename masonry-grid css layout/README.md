@@ -46,3 +46,6 @@ function resizeAllGridItems(){
 window.addEventListener("load",resizeAllGridItems);
 window.addEventListener("resize", resizeAllGridItems);
 ```
+
+## Result
+![result](https://i.imgur.com/WtkIu4p.png)
