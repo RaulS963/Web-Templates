@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>masonary-grid test</title>
+		<style>
+			.btn-div{
+				margin-top: 45px;;
+			}
+			.grid{
+				display: grid;
+				grid-gap: 10px;
+				grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+				grid-auto-rows: 10px;
+			}
+			.item{
+				background-color: blueviolet;
+			}
+			.content{
+				margin: 10px;
+			}
+
+			
+
+		</style>
+	</head>
+	<body>
+		
+		<div class="grid" id="container">
+			<div class="item"><div class="content" style="height: 300px;">1</div></div>
+			<div class="item"><div class="content" style="height: 210px;">2</div></div>
+			<div class="item"><div class="content" style="height: 300px;">3</div></div>
+			<div class="item"><div class="content" style="height: 360px;">4</div></div>
+			<div class="item""><div class="content" style="height: 150px;">5</div></div>
+
+		</div>
+		<div class="btn-div">
+			<button id="button" onclick="loadmore()">add more +</button>
+		</div>
+		
+
+
+
+	</body>
+	<script>
+		var counter = 6;
+		function loadmore(){
+			console.log("loading more..");
+
+			var height_array = ['210px','420px','377px','100px','300px','560px','720px'];
+			var random_height = height_array[Math.floor(Math.random() * height_array.length)];
+			console.log(random_height);
+			var parent = document.getElementById("container");
+
+			var box = document.createElement('div');
+			box.className = "item";
+
+			var content_box = document.createElement('div');
+			content_box.className = "content";
+			content_box.style.height = random_height;
+			content_box.innerHTML = counter;
+			counter++;
+
+			box.appendChild(content_box);
+			parent.appendChild(box);
+
+			resizeAllGridItems();
+			
+		}
+
+		function resizeGridItem(item){
+			grid = document.getElementsByClassName("grid")[0];
+			rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+			rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+			rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+			item.style.gridRowEnd = "span "+ rowSpan;
+		  }
+					
+		  function resizeAllGridItems(){
+			allItems = document.getElementsByClassName("item");
+			for(x=0;x<allItems.length;x++){
+			resizeGridItem(allItems[x]);
+			}
+		  }	 
+		  
+		  function resizeAllGridItemsDynamic(){
+			console.log("called");
+			allItems = document.getElementsByClassName("item");
+			for(x=0;x<allItems.length;x++){
+			resizeGridItem(allItems[x]);
+			}
+		  }	  
+		  
+		  window.addEventListener("load",resizeAllGridItems);
+		  window.addEventListener("resize", resizeAllGridItems);
+		
+
+	</script>
+</html>
