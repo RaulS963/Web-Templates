@@ -4,7 +4,7 @@
 ```html
 <div class="loader">
   <img src="loading.gif" />
-</div
+</div>
 ```
 
 ## CSS:
